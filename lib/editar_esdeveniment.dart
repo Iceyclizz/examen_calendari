@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'controller.dart';
 
 class EditarEsdevenimentForm extends StatefulWidget {
-  const EditarEsdevenimentForm({Key? key}) : super(key: key);
+  const EditarEsdevenimentForm({Key? key, int? index}) : super(key: key);
 
   @override
   State<EditarEsdevenimentForm> createState() => _EditarEsdevenimentFormState();
@@ -11,7 +11,6 @@ class EditarEsdevenimentForm extends StatefulWidget {
 class _EditarEsdevenimentFormState extends State<EditarEsdevenimentForm> {
 
   final _clauFormulari=GlobalKey<FormState>();
-  final _controller = eventController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +61,7 @@ class _EditarEsdevenimentFormState extends State<EditarEsdevenimentForm> {
             if (_clauFormulari.currentState != null &&
                 _clauFormulari.currentState!.validate()) {
               _clauFormulari.currentState!.save();
+              //eventController().save(index: index);
               Navigator.pop(context);
             }
     },

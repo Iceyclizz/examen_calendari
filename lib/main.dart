@@ -23,6 +23,12 @@ class MyApp extends StatelessWidget {
     ),
         '/event': (context) => EditarEsdevenimentForm(),
       },
+      onGenerateRoute: (routeSettings) {
+        switch(routeSettings.name) {
+          case '/event':
+            return MaterialPageRoute(builder: (context)=>EditarEsdevenimentForm(index: (routeSettings.arguments as Map)["index"]));
+        }
+      },
     );
   }
 }
@@ -102,6 +108,10 @@ class EsdevenimentWidget extends StatelessWidget {
     return ListTile(
       title: Text(
           "${DateFormat("yyyy-MM-dd HH:mm").format(esdeveniment.horaInici)}: ${esdeveniment.titol}\n${esdeveniment.descripcio}"),
+      onTap: () async {
+        await Navigator.pushNamed(context, "/clase/edit",
+            arguments: {"index": eventController.getindex(esdeveniment)});
+      },
     );
   }
 }
